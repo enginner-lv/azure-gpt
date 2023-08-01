@@ -24,7 +24,8 @@ export async function POST(req: Request) {
     // Ask OpenAI for a streaming completion given the prompt
     const response = await openai.createChatCompletion(payload);
 
-    console.log("response.status", response.status);
+    console.log("response", response.status, response.statusText);
+
     if (payload.stream) {
       const reader = response?.body?.getReader();
       const stream = new ReadableStream({
