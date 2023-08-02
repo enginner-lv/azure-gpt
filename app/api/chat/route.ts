@@ -14,14 +14,14 @@ const config = new Configuration({
 
 const openai = new OpenAIApi(config);
 
-// Set the runtime to edge for best performance
 export const runtime = "edge";
 
 export async function POST(req: Request) {
   try {
     const payload = await req.json();
 
-    // Ask OpenAI for a streaming completion given the prompt
+    console.log("request", payload?.messages);
+
     const response = await openai.createChatCompletion(payload);
 
     console.log("response", response.status, response.statusText);
