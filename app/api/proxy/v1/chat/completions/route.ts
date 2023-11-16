@@ -3,10 +3,13 @@ export const runtime = "edge";
 
 export async function POST(req: Request) {
   try {
-    const authorization = req.headers.get('Authorization');
+    let authorization = req.headers.get('Authorization');
+
+    if (authorization && authorization.startsWith('Bearer ')) {
+      authorization = authorization.substring(7);
+    }
 
     console.log("authorization", authorization);
-    
     
     const payload = await req.json();
     const config = new Configuration({
