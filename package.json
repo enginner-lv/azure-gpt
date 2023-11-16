@@ -1,4 +1,5 @@
 {
+  "name": "ai-stream-proxy",
   "private": true,
   "scripts": {
     "dev": "next dev",

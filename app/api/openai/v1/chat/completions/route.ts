@@ -1,15 +1,6 @@
 import {Configuration, OpenAIApi} from "openai-edge";
 const config = new Configuration({
-  apiKey: process.env.AZURE_OPENAI_API_KEY,
-  baseOptions: {
-    headers: {
-      "api-key": process.env.AZURE_OPENAI_API_KEY,
-    },
-  },
-  basePath: `https://west-europe-01.openai.azure.com/openai/deployments/test01`,
-  defaultQueryParams: new URLSearchParams({
-    "api-version": process.env.AZURE_OPENAI_API_VERSION,
-  } as any),
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(config);
@@ -20,7 +11,7 @@ export async function POST(req: Request) {
   try {
     const payload = await req.json();
 
-    console.log("request", payload?.messages);
+    console.log("request", payload);
 
     const response = await openai.createChatCompletion(payload);
 
